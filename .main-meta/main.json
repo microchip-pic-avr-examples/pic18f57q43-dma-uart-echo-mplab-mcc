@@ -19,12 +19,12 @@
             }
         ],
         "dfp": {
-            "name": "",
-            "semverRange": ""
+            "name": "PIC18F-Q_DFP",
+            "semverRange": "^1.17.379"
         },
         "configurator": {
-            "name": "",
-            "semverRange": ""
+            "name": "MCC",
+            "semverRange": ">=5.3.7"
         },
         "device": {
             "metaDataVersion": "1.0.0",
@@ -37,8 +37,11 @@
             }
         },
         "author": "MOHIT SATHYASEELAN PALLIYIL",
-        "peripherals": [],
-        "keywords": [],
+        "peripherals": ["UART","DMA"],
+        "keywords": ["Getting Started",
+        "Curiosity",
+        "Melody",
+        "MCC Classic"],
         "additionalData": {
             "longDescription": {
                 "metaDataVersion": "1.0.0",
