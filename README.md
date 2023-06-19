@@ -8,8 +8,8 @@ This project aims to showcase the efficiency and usefulness of Direct Memory Acc
 
 This project application can be applicable for any device with DMA and is suited for MCC Classic or Melody. The code provided is run on PIC18F57Q43 CNANO board.
 
-### Curiosity High Pin Count (HPC) Development Board:
-![Curiosity High Pin Count (HPC) Development Board](images/pic18f57q43.PNG)
+### Curiosity Nano Development Board:
+![Curiosity Nano Development Board](images/pic18f57q43.PNG)
 
 ## Related Documentation
 
