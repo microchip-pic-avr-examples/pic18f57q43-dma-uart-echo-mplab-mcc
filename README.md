@@ -39,7 +39,7 @@ This project application can be applicable for any device with DMA and is suited
 4. Open the desired project file "DMA_8bitUART_Class" for MCC Classic setup or "DMA_8bitUART_Melody" for MCC Melody setup.
 
   ###### Figure 1: Open Project Window
-  ![Open Project Window](images/openproj.png)
+  ![Open Project Window](images/openproj.PNG)
 
 5. Click -> **Project Properties** button to open the Project Properties window. Select the Curiosity tool from the Tools drop-down menu as shown in Figure 2.
 
