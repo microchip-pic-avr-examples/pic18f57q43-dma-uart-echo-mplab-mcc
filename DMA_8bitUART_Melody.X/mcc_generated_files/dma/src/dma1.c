@@ -1,0 +1,185 @@
+/**
+ * DMA1 Generated Driver File.
+ * 
+ * @file dma1.c
+ * 
+ * @ingroup  dma1
+ * 
+ * @brief This file contains the API implementations for the DMA1 driver.
+ *
+ * @version DMA1 Driver Version 2.12.0
+ */ 
+
+/*
+© [2023] Microchip Technology Inc. and its subsidiaries.
+
+    Subject to your compliance with these terms, you may use Microchip 
+    software and any derivatives exclusively with Microchip products. 
+    You are responsible for complying with 3rd party license terms  
+    applicable to your use of 3rd party software (including open source  
+    software) that may accompany Microchip software. SOFTWARE IS ?AS IS.? 
+    NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS 
+    SOFTWARE, INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT,  
+    MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT 
+    WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY 
+    KIND WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF 
+    MICROCHIP HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE 
+    FORESEEABLE. TO THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP?S 
+    TOTAL LIABILITY ON ALL CLAIMS RELATED TO THE SOFTWARE WILL NOT 
+    EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
+    THIS SOFTWARE.
+*/
+
+ /**
+   Section: Included Files
+ */
+
+#include <xc.h>
+#include "../dma1.h"
+
+
+
+
+/**
+  Section: DMA1 APIs
+*/
+
+void DMA1_Initialize(void)
+{   
+    
+    //DMA Instance Selection : 0x0
+    DMASELECT = 0x0;
+    //Source Address : (uint24_t) &U1RXB
+    DMAnSSA = (uint24_t) &U1RXB;
+    //Destination Address : (uint16_t) &U1TXB
+    DMAnDSA = (uint16_t) &U1TXB;
+    //SSTP not cleared; SMODE incremented; SMR SFR; DSTP not cleared; DMODE unchanged; 
+    DMAnCON1 = 0x2;
+    //Source Message Size : 1
+    DMAnSSZ = 1;
+    //Destination Message Size : 1
+    DMAnDSZ = 1;
+    //Start Trigger : SIRQ U1RX; 
+    DMAnSIRQ = 0x20;
+    //Abort Trigger : AIRQ None; 
+    DMAnAIRQ = 0x0;
+	
+    // Clear Destination Count Interrupt Flag bit
+    PIR2bits.DMA1DCNTIF = 0; 
+    // Clear Source Count Interrupt Flag bit
+    PIR2bits.DMA1SCNTIF = 0; 
+    // Clear Abort Interrupt Flag bit
+    PIR2bits.DMA1AIF = 0; 
+    // Clear Overrun Interrupt Flag bit
+    PIR2bits.DMA1ORIF =0; 
+    
+    PIE2bits.DMA1DCNTIE = 0;
+    PIE2bits.DMA1SCNTIE = 0;
+    PIE2bits.DMA1AIE = 0;
+    PIE2bits.DMA1ORIE = 0;
+	
+    //AIRQEN disabled; DGO not in progress; SIRQEN enabled; EN enabled; 
+    DMAnCON0 = 0xC0;
+	 
+}
+
+void DMA1_Enable(void)
+{
+    DMASELECT = 0x0;
+    DMAnCON0bits.EN = 0x1;
+}
+
+void DMA1_Disable(void)
+{
+    DMASELECT = 0x0;
+    DMAnCON0bits.EN = 0x0;
+}
+
+void DMA1_SourceRegionSelect(uint8_t region)
+{
+    DMASELECT = 0x0;
+	DMAnCON1bits.SMR  = region;
+}
+
+void DMA1_SourceAddressSet(uint24_t address)
+{
+    DMASELECT = 0x0;
+	DMAnSSA = address;
+}
+
+void DMA1_DestinationAddressSet(uint16_t address)
+{
+    DMASELECT = 0x0;
+	DMAnDSA = address;
+}
+
+void DMA1_SourceSizeSet(uint16_t size)
+{
+    DMASELECT = 0x0;
+	DMAnSSZ= size;
+}
+
+void DMA1_DestinationSizeSet(uint16_t size)
+{                     
+    DMASELECT = 0x0;
+	DMAnDSZ= size;
+}
+
+uint24_t DMA1_SourcePointerGet(void)
+{
+    DMASELECT = 0x0;
+	return DMAnSPTR;
+}
+
+uint16_t DMA1_DestinationPointerGet(void)
+{
+    DMASELECT = 0x0;
+	return DMAnDPTR;
+}
+
+void DMA1_StartTriggerSet(uint8_t sirq)
+{
+    DMASELECT = 0x0;
+	DMAnSIRQ = sirq;
+}
+
+void DMA1_AbortTriggerSet(uint8_t airq)
+{
+    DMASELECT = 0x0;
+	DMAnAIRQ = airq;
+}
+
+void DMA1_TransferStart(void)
+{
+    DMASELECT = 0x0;
+	DMAnCON0bits.DGO = 1;
+}
+
+void DMA1_TransferWithTriggerStart(void)
+{
+    DMASELECT = 0x0;
+	DMAnCON0bits.SIRQEN = 1;
+}
+
+void DMA1_TransferStop(void)
+{
+    DMASELECT = 0x0;
+	DMAnCON0bits.SIRQEN = 0; 
+	DMAnCON0bits.DGO = 0;
+}
+
+void DMA1_DMAPrioritySet(uint8_t priority)
+{
+	PRLOCK = 0x55;
+	PRLOCK = 0xAA;
+	PRLOCKbits.PRLOCKED = 0;
+	DMA1PR = priority;
+	PRLOCK = 0x55;
+	PRLOCK = 0xAA;
+	PRLOCKbits.PRLOCKED = 1;
+}
+
+/**
+ End of File
+*/
