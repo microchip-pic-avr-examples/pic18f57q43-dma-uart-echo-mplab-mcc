@@ -37,7 +37,7 @@ This project application can be used by any device using a DMA, and is suited fo
 
 1. Connect the PIC18F57Q43 Curiosity Nano board to a PC using the Micro-USB to USB 2.0 cable. 
   ###### Figure 1: PIC18F57Q43 USB connection
-  ![Open Project Window](images/pic18f57q43usbconnection.PNG)
+  ![Open Project Window](images/pic18f57q43usbconnection.png)
 
 2. If not already on your system, download and install MPLABX IDE version 6.10 (or newer).
 3. If not already on your system, download and install the XC8 C-Compiler version 2.41 (or newer).
