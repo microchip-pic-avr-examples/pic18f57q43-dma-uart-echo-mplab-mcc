@@ -59,7 +59,7 @@ Complexity : Easy
 3. Once the project is open, Click on MCC. In the UART peripheral. Check the 'Redirect Printf to USART' check-box, as shown in figure 4,
 
   ###### Figure 4: 'Redirect Printf to USART' Check-box
-  ![STDIO to USART](images/STDIO2USART.PNG)
+  ![STDIO to USART](images/stdio2usart.PNG)
 
 4. Select the DMA Peripheral under Project Resources, Drivers. The DMA module is configured to transfer the data from UART1RX to UART1TX without the help of the CPU. The settings for the DMA are provided in figure 5 and 6.
 
