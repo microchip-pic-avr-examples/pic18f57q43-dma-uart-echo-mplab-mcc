@@ -56,12 +56,12 @@ Complexity : Easy
   ###### Figure 3: Select the Nano in Project Properties Window
   ![Select Tool](images/projprop.PNG)
 
-3. Once the project is open, Click on MCC. In the UART peripheral. Check the 'Redirect Printf to USART' check-box, as shown in figure 4,
+3. Once the project is open, Click on **MCC**. In the **UART peripheral** under **Project Resources**. Check the 'Redirect Printf to USART' check-box, as shown in figure 4,
 
   ###### Figure 4: 'Redirect Printf to USART' Check-box
   ![STDIO to USART](images/stdio2usart.PNG)
 
-4. Select the DMA Peripheral under Project Resources, Drivers. The DMA module is configured to transfer the data from UART1RX to UART1TX without the help of the CPU. The settings for the DMA are provided in figure 5 and 6.
+4. Select the **DMA Peripheral** under **Project Resources**, Drivers. The DMA module is configured to transfer the data from UART1RX to UART1TX without the help of the CPU. The settings for the DMA are provided in figure 5 and 6.
 
   ###### Figure 5: 'DMA source settings' 
   ![STDIO to USART](images/dmasource.PNG)
@@ -82,26 +82,28 @@ The DMA Destination Message Size for UART peripheral must be set to 1 Byte as it
   ###### Figure 8: Program Complete
   ![Program Complete](images/progcomplete.PNG)
 
-6. For this example, Data Visualizer was used as the terminal program.
+6. For this example, **Data Visualizer** was used as the terminal program.
   ###### Figure 9: Open Data Visualizer
   ![Select USB Port](images/opendv.PNG)   
-7. Select the port that is used by the Nano board as shown in figure 10. <br />
+
+7. Select the port that is used by the Nano board as shown in figure 10. 
 
   ###### Figure 10: Select the USB Port
   ![Select USB Port](images/portselection.PNG)
-8. Configure the serial port, as shown in figure 11. <br />
+  
+8. Configure the serial port, as shown in figure 11. 
   ###### Figure 11: Configure the Serial Port
   ![Configure Serial Port](images/serialsetup.PNG)
 
 
 
-After the Nano board is programmed, the EUSART module will transmit the string "**** DMA UART ECHO Program starts here  ******".
+After the Nano board is programmed, the EUSART module will transmit the string "**** **DMA UART ECHO Program starts here**  ******".
 
 
 ## Summary
 The 'DMA_8bitUART_Melody' and the 'DMA_8bitUART_Classic' code example uses the PIC18F57Q43 Curiosity Nano Development board to demonstrate how to setup a DMA using MCC. The example shows the efficiency and usefulness of DMA in an application and can be used to prevent the usuage of CPU.
 
-The terminal (see figure 11.) shows the output echo, the light font being input from customer and the bold font being output from the DMA. The input is passed from UART_RX port to the UART_TX port without using CPU.
+The terminal (see figure 11.) shows the output echo, **the light fontbeing input** from customer and **the bold font being output** from the DMA. The input is passed from UART_RX port to the UART_TX port using the UART trigger, but not the CPU.
 
 ###### Figure 12: Output of echo
 ![Terminal Window](images/output.PNG)
