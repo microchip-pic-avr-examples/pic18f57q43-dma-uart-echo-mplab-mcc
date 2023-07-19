@@ -51,7 +51,6 @@ int main(void)
     // Disable the Global Interrupts 
     //INTERRUPT_GlobalInterruptDisable(); 
     SYSTEM_Initialize();
-    DMA1_Enable();
     printf("**** DMA UART ECHO Program starts here  ******");
     while(1)
     {

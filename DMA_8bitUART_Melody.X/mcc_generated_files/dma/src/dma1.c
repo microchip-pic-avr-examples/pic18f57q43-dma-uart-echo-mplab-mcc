@@ -7,7 +7,7 @@
  * 
  * @brief This file contains the API implementations for the DMA1 driver.
  *
- * @version DMA1 Driver Version 2.12.0
+ * @version DMA1 Driver Version 2.11.0
  */ 
 
 /*
@@ -38,9 +38,6 @@
 #include <xc.h>
 #include "../dma1.h"
 
-
-
-
 /**
   Section: DMA1 APIs
 */
@@ -50,10 +47,10 @@ void DMA1_Initialize(void)
     
     //DMA Instance Selection : 0x0
     DMASELECT = 0x0;
-    //Source Address : (uint24_t) &U1RXB
-    DMAnSSA = (uint24_t) &U1RXB;
-    //Destination Address : (uint16_t) &U1TXB
-    DMAnDSA = (uint16_t) &U1TXB;
+    //Source Address : &U1RXB
+    DMAnSSA = &U1RXB;
+    //Destination Address : &U1TXB
+    DMAnDSA = &U1TXB;
     //SSTP not cleared; SMODE incremented; SMR SFR; DSTP not cleared; DMODE unchanged; 
     DMAnCON1 = 0x2;
     //Source Message Size : 1
@@ -84,92 +81,80 @@ void DMA1_Initialize(void)
 	 
 }
 
-void DMA1_Enable(void)
-{
-    DMASELECT = 0x0;
-    DMAnCON0bits.EN = 0x1;
-}
-
-void DMA1_Disable(void)
-{
-    DMASELECT = 0x0;
-    DMAnCON0bits.EN = 0x0;
-}
-
-void DMA1_SourceRegionSelect(uint8_t region)
+void DMA1_SelectSourceRegion(uint8_t region)
 {
     DMASELECT = 0x0;
 	DMAnCON1bits.SMR  = region;
 }
 
-void DMA1_SourceAddressSet(uint24_t address)
+void DMA1_SetSourceAddress(uint24_t address)
 {
     DMASELECT = 0x0;
 	DMAnSSA = address;
 }
 
-void DMA1_DestinationAddressSet(uint16_t address)
+void DMA1_SetDestinationAddress(uint16_t address)
 {
     DMASELECT = 0x0;
 	DMAnDSA = address;
 }
 
-void DMA1_SourceSizeSet(uint16_t size)
+void DMA1_SetSourceSize(uint16_t size)
 {
     DMASELECT = 0x0;
 	DMAnSSZ= size;
 }
 
-void DMA1_DestinationSizeSet(uint16_t size)
+void DMA1_SetDestinationSize(uint16_t size)
 {                     
     DMASELECT = 0x0;
 	DMAnDSZ= size;
 }
 
-uint24_t DMA1_SourcePointerGet(void)
+uint24_t DMA1_GetSourcePointer(void)
 {
     DMASELECT = 0x0;
 	return DMAnSPTR;
 }
 
-uint16_t DMA1_DestinationPointerGet(void)
+uint16_t DMA1_GetDestinationPointer(void)
 {
     DMASELECT = 0x0;
 	return DMAnDPTR;
 }
 
-void DMA1_StartTriggerSet(uint8_t sirq)
+void DMA1_SetStartTrigger(uint8_t sirq)
 {
     DMASELECT = 0x0;
 	DMAnSIRQ = sirq;
 }
 
-void DMA1_AbortTriggerSet(uint8_t airq)
+void DMA1_SetAbortTrigger(uint8_t airq)
 {
     DMASELECT = 0x0;
 	DMAnAIRQ = airq;
 }
 
-void DMA1_TransferStart(void)
+void DMA1_StartTransfer(void)
 {
     DMASELECT = 0x0;
 	DMAnCON0bits.DGO = 1;
 }
 
-void DMA1_TransferWithTriggerStart(void)
+void DMA1_StartTransferWithTrigger(void)
 {
     DMASELECT = 0x0;
 	DMAnCON0bits.SIRQEN = 1;
 }
 
-void DMA1_TransferStop(void)
+void DMA1_StopTransfer(void)
 {
     DMASELECT = 0x0;
 	DMAnCON0bits.SIRQEN = 0; 
 	DMAnCON0bits.DGO = 0;
 }
 
-void DMA1_DMAPrioritySet(uint8_t priority)
+void DMA1_SetDMAPriority(uint8_t priority)
 {
 	PRLOCK = 0x55;
 	PRLOCK = 0xAA;
