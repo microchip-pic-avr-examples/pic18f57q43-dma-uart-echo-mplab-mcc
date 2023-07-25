@@ -65,7 +65,7 @@ Complexity : Easy
   ###### Figure 4: 'DMA  settings' 
   ![DMA](images/dmasource.PNG)
 
-The Source Message Size can be configured to more than 1 byte. For this project it is set to 1 Byte. Select the DMA1(PLIB) from the Builder graph. Configure the DMA1 settings according to figure 5.
+The Source Message Size can be configured to more than 1 byte. For this project it is set to 1 byte. Select the DMA1(PLIB) from the Builder graph. Configure the DMA1 settings according to figure 5.
 
   ###### Figure 5: 'DMA1 PLIB settings' 
   ![DMA](images/dmadestination.PNG)
@@ -87,14 +87,14 @@ The DMA Destination Message Size for UART peripheral must be set to 1 Byte as it
 6. Click "Make and Program Device" in the top ribbon to program the Curiosity Nano, as shown in figure 7. Verify that the device was successfully programmed, as shown in figure 8.
 
   ###### Figure 7: 'Make and Program Device' Button
-  ![Program Device Button](images/build.PNG)
+  ![Program Device Button](images/buildi.PNG)
 
   ###### Figure 8: Program Complete
-  ![Program Complete](images/progcomplete.PNG)
+  ![Program Complete](images/progcompletei.PNG)
 
 7. For this example, **Data Visualizer** was used as the terminal program.
   ###### Figure 9: Open Data Visualizer
-  ![Select USB Port](images/opendv.PNG)   
+  ![Select USB Port](images/opendvi.PNG)   
 
 8. Select the port that is used by the Nano board as shown in figure 10. 
 
